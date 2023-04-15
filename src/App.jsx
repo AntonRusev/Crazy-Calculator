@@ -1,10 +1,15 @@
+import { CalcProvider } from './contexts/CalcContext'
+
+import { Calculator } from './components/Calculator/Calculator'
+
 import './App.css'
 
 function App() {
-
   return (
-    <p>Crazy Calculator</p>
-  );
+    <CalcProvider>
+      <Calculator />
+    </CalcProvider>
+  )
 }
 
 export default App
