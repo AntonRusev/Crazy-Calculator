@@ -5,117 +5,121 @@ export const CalcContext = createContext();
 export const CalcProvider = ({
     children
 }) => {
-    const [displayValue, setDisplayValue] = useState('0');
-    const [firstNum, setFirstNum] = useState('0');
-    const [secondNum, setSecondNum] = useState('0');
-    const [operator, setOperator] = useState('');
     const [result, setResult] = useState('0');
-    const [forCalculation, setForCalculation] = useState([]);
-
-    // useEffect(() => {
-    //     console.log(displayValue, firstNum, secondNum, operator);
-    // },[displayValue, firstNum, secondNum, operator]);
+    const [symbol, setSymbol] = useState('');
+    const [currentInput, setCurrentInput] = useState('0');
 
     useEffect(() => {
-        calculate(firstNum, operator, secondNum);
-        setOperator('');
-    }, [secondNum]);
+        console.log(result);
+        console.log(symbol);
+        console.log(currentInput);
+    }, [currentInput, symbol, result]);
+
+    useEffect(() => {
+        if (currentInput.length > 1 && currentInput[0] === '0' && currentInput[1] !== '.') {
+            setCurrentInput(state => state.slice(1));
+        }
+    }, [currentInput]);
 
     const onBtnClick = (value) => {
-        switch (value) {
-            case '=':
-                setSecondNum(+displayValue);
-                break;
-            case '+':
-                if (operator === '') {
-                    setOperator('+');
-                    setFirstNum(+displayValue);
-                    setDisplayValue('0');
-                } else {
-                    setSecondNum(+displayValue);
-                }
-                break;
-            case '-':
-                if (operator === '') {
-                    setOperator('-');
-                    setFirstNum(+displayValue);
-                    setDisplayValue('0');
-                } else {
-                    setSecondNum(+displayValue);
-                }
-                break;
-            case 'x':
-                if (operator === '') {
-                    setOperator('*');
-                    setFirstNum(+displayValue);
-                    setDisplayValue('0');
-                } else {
-                    setSecondNum(+displayValue);
-                }
-                break;
-            case '/':
-                if (operator === '') {
-                    setOperator('/');
-                    setFirstNum(+displayValue);
-                    setDisplayValue('0');
-                } else {
-                    setSecondNum(+displayValue);
-                }
-                break;
-            case '%':
-                if (operator === '') {
-                    setOperator('%');
-                    setFirstNum(+displayValue);
-                    setDisplayValue('0');
-                } else {
-                    setSecondNum(+displayValue);
-                }
-                break;
-            case 'C':
-                setResult('0');
-                break;
-            case 'CE':
-                setDisplayValue('0');
-                break;
+        if (value === '=') {
+            equals();
+        } else if (value === 'C' || value === 'CE') {
+            erase(value);
+        } else if (value === '%') {
+            percent();
+        } else if (value === '+'
+            || value === '-'
+            || value === 'x'
+            || value === '/') {
+            symbolType(value);
 
-            default:
-                if (displayValue.length > 0 && displayValue[0] === '.') {
-                    setDisplayValue(state => state.concat('0'+ state));
-                    setDisplayValue(state => state.slice(1));
-                }
-                setDisplayValue(state => state + value);
-                if (displayValue.length > 0 && displayValue[0] === '0') {
-                    setDisplayValue(state => state.slice(1));
-                }
-                if (displayValue.length >= 9) {
-                    setDisplayValue(state => state.slice(0, 9));
-                }
-                break;
+        } else {
+            numInput(value);
         }
     };
 
-    const calculate = (firstNum, operator, secondNum) => {
-        if (operator === '+') {
-            const result = +firstNum + +secondNum;
-            setDisplayValue(result);
-        } else if (operator === '-') {
-            const result = +firstNum - +secondNum;
-            setDisplayValue(result);
-        } else if (operator === '*') {
-            const result = +firstNum * +secondNum;
-            setDisplayValue(result);
-        } else if (operator === '/') {
-            const result = +firstNum / +secondNum;
-            setDisplayValue(result);
+    const numInput = (value) => {
+        if (value === '.' && currentInput.includes('.')) {
+            return;
         }
 
+        if (currentInput.length > 1 && currentInput[0] === '0' && currentInput[1] !== '.') {
+            setCurrentInput(state => state.slice(1));
+        }
 
-    }
+        if (currentInput[0] === '.') {
+            setCurrentInput(state => state.concat('0' + state));
+            setDisplayValue(state => state.slice(1));
+        }
+
+        return setCurrentInput(state => state + value);
+    };
+
+    const equals = () => {
+        let total = Number(result);
+        switch (symbol) {
+            case '+':
+                total = Number(result) + Number(currentInput);
+                break;
+            case '-':
+                total = Number(result) - Number(currentInput);
+                break;
+            case 'x':
+                if (result !== '0' && currentInput !== '0') {
+                    console.log('HIT')
+                    total = Number(result) * Number(currentInput);
+                }
+                break;
+            case '/':
+                if (result !== '0' && currentInput !== '0') {
+                    total = Number(result) / Number(currentInput);
+                }
+                break;
+            default:
+                console.log(symbol)
+                break;
+        }
+        setResult(String(total));
+        setCurrentInput('0');
+    };
+
+    const symbolType = (value) => {
+        if (!symbol) {
+            setResult(currentInput);
+            setCurrentInput('0');
+            setSymbol(value);
+        } else {
+            equals();
+            setSymbol(value);
+        }
+
+    };
+
+    const erase = (value) => {
+        if (value === "C") {
+            setResult('0');
+            setCurrentInput('0');
+            setSymbol('');
+        } else {
+            setCurrentInput('0');
+        }
+    };
+
+    const percent = () => {
+        let percentResult = 0;
+        if (result !== '0') {
+            percentResult = result * (Number(currentInput) / 100);
+        } else {
+            percentResult = Number(currentInput) / 100;
+        }
+        setCurrentInput(String(percentResult));
+    };
 
     const calcContextValue = {
-        setDisplayValue,
         onBtnClick,
-        displayValue,
+        currentInput,
+        result,
     };
 
     return (
