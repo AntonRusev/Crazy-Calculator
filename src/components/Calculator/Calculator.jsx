@@ -1,14 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Button } from "../Button/Button";
-import { btnValues } from "../../data/button-values";
+import { defaultBtnValues } from "../../data/button-values";
 
 import { CalcContext } from "../../contexts/CalcContext";
 
 import css from "./Calculator.module.css";
 
 export const Calculator = () => {
+    const [buttons, setButtons] = useState(defaultBtnValues);
+
     const { currentInput, result } = useContext(CalcContext);
+
+    useEffect(() => {
+        shuffle(buttons);
+    }, [currentInput, result])
+
+    const shuffle = (values) => {
+        for (let i = values.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const temp = values[i];
+            values[i] = values[j];
+            values[j] = temp;
+          }
+
+        setButtons(values);
+    };
 
     return (
         <div id={css.calculator}>
@@ -16,8 +33,8 @@ export const Calculator = () => {
                 <p className={css.display}>{currentInput !== '0' ? currentInput : result}</p>
             </div>
             <div className={css['btn-holder']}>
-                {btnValues.map(x => <Button key={x} value={x} />)}
+                {buttons.map(x => <Button key={x} value={x} />)}
             </div>
         </div>
     );
-}
+};

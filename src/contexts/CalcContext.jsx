@@ -67,7 +67,6 @@ export const CalcProvider = ({
                 break;
             case 'x':
                 if (result !== '0' && currentInput !== '0') {
-                    console.log('HIT')
                     total = Number(result) * Number(currentInput);
                 }
                 break;
@@ -77,7 +76,6 @@ export const CalcProvider = ({
                 }
                 break;
             default:
-                console.log(symbol)
                 break;
         }
         setResult(String(total));
