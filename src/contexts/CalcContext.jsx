@@ -1,4 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
+
+import { GameContext } from "./GameContext";
 
 export const CalcContext = createContext();
 
@@ -8,6 +10,8 @@ export const CalcProvider = ({
     const [result, setResult] = useState('0');
     const [symbol, setSymbol] = useState('');
     const [currentInput, setCurrentInput] = useState('0');
+
+    const { symbolClickCounter } = useContext(GameContext)
 
     useEffect(() => {
         console.log(result);
@@ -32,8 +36,8 @@ export const CalcProvider = ({
             || value === '-'
             || value === 'x'
             || value === '/') {
+            symbolClickCounter();
             symbolType(value);
-
         } else {
             numInput(value);
         }
@@ -55,6 +59,8 @@ export const CalcProvider = ({
 
         return setCurrentInput(state => state + value);
     };
+
+
 
     const equals = () => {
         let total = Number(result);
@@ -78,7 +84,7 @@ export const CalcProvider = ({
             default:
                 break;
         }
-        setResult(String(total));
+        setResult(String(Math.round((total + Number.EPSILON) * 100) / 100));
         setCurrentInput('0');
     };
 
@@ -111,7 +117,7 @@ export const CalcProvider = ({
         } else {
             percentResult = Number(currentInput) / 100;
         }
-        setCurrentInput(String(percentResult));
+        setCurrentInput(String(Math.round((percentResult + Number.EPSILON) * 100) / 100));
     };
 
     const calcContextValue = {
