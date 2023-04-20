@@ -4,6 +4,7 @@ import { Button } from "../Button/Button";
 import { defaultBtnValues } from "../../data/button-values";
 
 import { CalcContext } from "../../contexts/CalcContext";
+import { GameContext } from "../../contexts/GameContext";
 
 import css from "./Calculator.module.css";
 
@@ -11,10 +12,18 @@ export const Calculator = () => {
     const [buttons, setButtons] = useState(defaultBtnValues);
 
     const { currentInput, result } = useContext(CalcContext);
+    const { targetNumber, symbolClicks, gameFinish } = useContext(GameContext);
 
     useEffect(() => {
         shuffle(buttons);
-    }, [currentInput, result])
+    }, [currentInput, result]);
+
+    useEffect(() => {
+        if (symbolClicks >= 3 && result == targetNumber) {
+            console.log('JACKPOT');
+            gameFinish();
+        };
+    }, [symbolClicks, result, targetNumber]);
 
     const shuffle = (values) => {
         for (let i = values.length - 1; i > 0; i--) {
