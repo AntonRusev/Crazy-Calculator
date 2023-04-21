@@ -13,7 +13,7 @@ export const GameInfo = () => {
             {isModalActive && <InfoModal />}
             <div id={css['game-info']}>
                 <button onClick={gameStart}>START</button>
-                <button onClick={onModalActivate}>MODAL</button>
+                {/* <button onClick={onModalActivate}>MODAL</button> */}
                 <button onClick={gameStop}>STOP</button>
                 <h6>GOAL NUMBER:</h6>
                 <div className={css['target-number']}>{targetNumber === 0 ? '???' : targetNumber}</div>

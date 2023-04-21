@@ -37,7 +37,7 @@ body {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #888;
+    background-color: #c2c2c2;
     /* background-color: azure; */
   }
   a:hover {
