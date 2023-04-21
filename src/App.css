@@ -3,4 +3,12 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  color: #104373;;
+}
+
+#main {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 2rem;
+  margin-top: 4rem;
 }

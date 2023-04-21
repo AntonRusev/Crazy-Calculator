@@ -1,0 +1,41 @@
+#game-info {
+    max-width: 25%;
+    padding-top: 16px;
+    background-color: #104373;
+    border: solid 2px #104373;
+    border-radius: 4px;
+    color: #b5e0d3;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#game-info button {
+    background-color: #62cbe7;
+    border: 2px solid #62cbe7;
+    border-radius: 4px;
+    color: #104373;
+    margin: 1px;
+    cursor: pointer;
+}
+
+#game-info h6 {
+    margin-top: 2rem;
+    margin-bottom: 0px;
+}
+
+.symbol-clicks {
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.symbol-clicks p {
+    padding: 0px;
+    margin: 0px;
+}
+
+.target-number {
+    font-size: 2rem ;
+    font-family: 'Orbitron', sans-serif;
+    padding: 12px 0px;
+    color: #62cbe7;
+    font-weight: bold;
+}

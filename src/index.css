@@ -38,6 +38,7 @@ body {
   :root {
     color: #213547;
     background-color: #888;
+    /* background-color: azure; */
   }
   a:hover {
     color: #747bff;

@@ -5,11 +5,21 @@ export const GameContext = createContext();
 export const GameProvider = ({
     children
 }) => {
-    const [targetNumber, setTargetNumber] = useState(null);
+    const [targetNumber, setTargetNumber] = useState('---');
     const [symbolClicks, setSymbolClicks] = useState(0);
     const [time, setTime] = useState(0);
     const [active, setActive] = useState(false);
     const [bestTimes, setBestTimes] = useState([]);
+    const [isModalActive, setIsModalActive] = useState(false);
+    const [newRecord, setNewRecord] = useState(false);
+
+    useEffect(() => {
+        if (isModalActive) {
+            setTimeout(() => {
+                onModalClose();
+            }, 3000);
+        };
+    }, [isModalActive]);
 
     useEffect(() => {
         let interval;
@@ -23,6 +33,20 @@ export const GameProvider = ({
         return () => clearInterval(interval);
     }, [active]);
 
+    useEffect(() => {
+        if(bestTimes.length > 1 && bestTimes[0] == `${("0" + Math.floor((time / 1000) % 60)).slice(-2)}:${("0" + ((time / 10) % 100)).slice(-2)}`) {
+            setNewRecord(true);
+        }
+    }, [bestTimes])
+
+    const onModalClose = () => {
+        setIsModalActive(false);
+        setNewRecord(false);
+    };
+
+    const onModalActivate = () => {
+        setIsModalActive(true);
+    };
 
     const gameStart = () => {
         generateTargetNumber();
@@ -32,17 +56,18 @@ export const GameProvider = ({
     }
 
     const gameStop = () => {
-        setTargetNumber(null);
+        setTargetNumber('---');
         setSymbolClicks(0);
         setTime(0);
         setActive(false);
     }
 
     const gameFinish = () => {
-        setTargetNumber(null);
+        setTargetNumber('---');
         setSymbolClicks(0);
         setActive(false);
         setBestTimes(state => [...state, `${("0" + Math.floor((time / 1000) % 60)).slice(-2)}:${("0" + ((time / 10) % 100)).slice(-2)}`]);
+        setIsModalActive(true);
     }
 
     const generateTargetNumber = () => {
@@ -54,15 +79,19 @@ export const GameProvider = ({
     };
 
     const gameContextValue = {
+        onModalClose,
+        onModalActivate,
         gameStart,
         gameStop,
         gameFinish,
         generateTargetNumber,
         symbolClickCounter,
+        isModalActive,
         targetNumber,
         symbolClicks,
         time,
-        bestTimes
+        bestTimes,
+        newRecord
     };
 
     return (
