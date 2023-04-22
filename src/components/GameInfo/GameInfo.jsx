@@ -22,7 +22,6 @@ export const GameInfo = () => {
                     <p>Operations:</p>
                     <p>{symbolClicks} / 3</p>
                 </div>
-                {/* <p>You can test your reflexes by clicking on the "START" button above, to start the CCC.</p> */}
             </div>
         </>
     );

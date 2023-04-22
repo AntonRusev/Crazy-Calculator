@@ -39,7 +39,7 @@ export const Calculator = () => {
     return (
             <div id={css.calculator}>
                 <div className={css['display-wrapper']}>
-                    <p className={css.display}>{currentInput !== '0' ? currentInput : result}</p>
+                    <p className={css.display}>{currentInput !== '0' ? +currentInput : +result}</p>
                 </div>
                 <div className={css['btn-holder']}>
                     {buttons.map(x => <Button key={x} value={x} />)}

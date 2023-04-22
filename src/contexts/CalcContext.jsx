@@ -11,19 +11,7 @@ export const CalcProvider = ({
     const [symbol, setSymbol] = useState('');
     const [currentInput, setCurrentInput] = useState('0');
 
-    const { symbolClickCounter } = useContext(GameContext)
-
-    useEffect(() => {
-        console.log(result);
-        console.log(symbol);
-        console.log(currentInput);
-    }, [currentInput, symbol, result]);
-
-    useEffect(() => {
-        if (currentInput.length > 1 && currentInput[0] === '0' && currentInput[1] !== '.') {
-            setCurrentInput(state => state.slice(1));
-        }
-    }, [currentInput]);
+    const { symbolClickCounter } = useContext(GameContext);
 
     const onBtnClick = (value) => {
         if (value === '=') {
@@ -48,10 +36,6 @@ export const CalcProvider = ({
             return;
         }
 
-        if (currentInput.length > 1 && currentInput[0] === '0' && currentInput[1] !== '.') {
-            setCurrentInput(state => state.slice(1));
-        }
-
         if (currentInput[0] === '.') {
             setCurrentInput(state => state.concat('0' + state));
             setDisplayValue(state => state.slice(1));
@@ -59,8 +43,6 @@ export const CalcProvider = ({
 
         return setCurrentInput(state => state + value);
     };
-
-
 
     const equals = () => {
         let total = Number(result);

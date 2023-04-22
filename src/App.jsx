@@ -19,7 +19,7 @@ function App() {
                 <ScoresTable />
                 </main>
                 <h5>Rules:</h5>
-                <p>Once you click the "START" button, a random three-digit number will be generated and the timer will start. Your goal is as quickly as possible to get that number as result on the dispay of the calculator, while performing a minimum of three algorithmic operations(using one, or a mix of "+", "-", "/" or "x").</p>
+                <p>Once you click the "START" button, a random three-digit number will be generated and the timer will start. Your goal is as quickly as possible to get that number as result on the display of the calculator, while performing a minimum of three algorithmic operations(using one, or a mix of "+", "-", "/" or "x").</p>
                 <p>HINT: For extra challenge, do not reset the value on the screen of the calculator.</p>
             </CalcProvider>
         </GameProvider>
