@@ -1,11 +1,14 @@
 #game-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     width: 25%;
-    padding-top: 16px;
+    padding-top: 2rem;
     background-color: #104373;
     border: solid 2px #104373;
     border-radius: 4px;
     color: #b5e0d3;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 #game-info button {
@@ -14,7 +17,8 @@
     border-radius: 4px;
     color: #104373;
     font-family: 'Bruno Ace', cursive;
-    margin: 4px;
+    font-size: 2rem;
+    margin: 1rem;
     cursor: pointer;
 }
 
@@ -40,9 +44,16 @@
 }
 
 .target-number {
-    font-size: 2rem ;
+    font-size: 4rem ;
     font-family: 'Orbitron', sans-serif;
-    padding: 12px 0px;
+    padding: 1rem 0rem;
+    /* letter-spacing: 3px; */
     color: #62cbe7;
     font-weight: bold;
 }
+
+@media screen and (max-width: 900px) {
+    #game-info {
+        width: 70%;
+    }
+  }

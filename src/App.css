@@ -1,10 +1,14 @@
 #root {
-  max-width: 1280px;
+  max-width: 1920px;
+  /* height: 150vh; */
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  color: #104373;;
+  color: #104373;
   font-family: 'Josefin Sans', sans-serif;
+  font-size: 2.5rem;
+  background-image: url("/src/assets/istockphoto-629737180-612x612.jpg");
+  background-color: #cccccc;
 }
 
 #main {
@@ -16,5 +20,46 @@
 
 h1 {
   font-family: 'Bruno Ace', cursive;
+  letter-spacing: 1px;
   text-shadow: 1px 1px 2px #104373;
+  backdrop-filter: blur(1px);
+  outline: invert;
+  -webkit-text-stroke: 1px white;
+}
+
+h5 {
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 1px #104373;
+}
+
+.rules {
+  font-weight: 600;
+  text-shadow: 1px 1px 2px #104373;
+  backdrop-filter: blur(1.3px);
+}
+
+@media screen and (max-width: 1400px) {
+  #main {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #root {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  #root {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  h1 {
+    font-size: 2rem;
+    letter-spacing: 0px;
+  }
 }

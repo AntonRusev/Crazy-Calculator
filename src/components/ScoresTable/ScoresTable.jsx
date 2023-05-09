@@ -11,7 +11,7 @@ export const ScoresTable = () => {
 
     return (
         <div id={css['best-times']}>
-            <p>Best scores this session:</p>
+            <h5>Best scores this session:</h5>
             {bestTimes.length > 0 ? bestTimes.sort().map(x => <Score key={x} score={x} />) : 'No high-scores yet'}
         </div>
     );

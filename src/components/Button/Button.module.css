@@ -6,20 +6,42 @@
     font-family: 'Bruno Ace', cursive;
     font-weight: bolder;
     background-color:#104373;
-    width: 42px;
-    height: 30px;
+    /* width: 42px;
+    height: 30px; */
+    /* width: 7rem; */
+    width: 22%;
+    height: 5rem;
     border: 2px solid  #104373;
     border-radius: 4px;
-    /* width: 25%; */
     box-sizing: border-box;
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .button:last-child {
-    height: 65px;
+    height: 176px;
 }
 
 .button:hover {
     color: #62cbe7;
 }
+
+@media screen and (max-width: 620px) {
+    .button {
+        /* width: 6rem; */
+        height: 4rem;
+    }
+    .button:last-child {
+        height: 145px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .button {
+        /* width: 6rem; */
+        height: 3rem;
+    }
+    .button:last-child {
+        height: 110px;
+    }
+  }
