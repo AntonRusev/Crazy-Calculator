@@ -23,21 +23,23 @@ export const GameProvider = ({
 
     useEffect(() => {
         let interval;
+
         if (active) {
             interval = setInterval(() => {
                 setTime(state => state + 10);
             }, 10);
         } else if (!active) {
             clearInterval(interval);
-        }
+        };
+
         return () => clearInterval(interval);
     }, [active]);
 
     useEffect(() => {
-        if(bestTimes.length > 1 && bestTimes[0] == `${("0" + Math.floor((time / 1000) % 60)).slice(-2)}:${("0" + ((time / 10) % 100)).slice(-2)}`) {
+        if (bestTimes.length > 1 && bestTimes[0] == `${("0" + Math.floor((time / 1000) % 60)).slice(-2)}:${("0" + ((time / 10) % 100)).slice(-2)}`) {
             setNewRecord(true);
-        }
-    }, [bestTimes])
+        };
+    }, [bestTimes]);
 
     const onModalClose = () => {
         setIsModalActive(false);
@@ -53,14 +55,14 @@ export const GameProvider = ({
         setSymbolClicks(0);
         setTime(0);
         setActive(true);
-    }
+    };
 
     const gameStop = () => {
         setTargetNumber('---');
         setSymbolClicks(0);
         setTime(0);
         setActive(false);
-    }
+    };
 
     const gameFinish = () => {
         setTargetNumber('---');
@@ -68,11 +70,11 @@ export const GameProvider = ({
         setActive(false);
         setBestTimes(state => [...state, `${("0" + Math.floor((time / 1000) % 60)).slice(-2)}:${("0" + ((time / 10) % 100)).slice(-2)}`]);
         setIsModalActive(true);
-    }
+    };
 
     const generateTargetNumber = () => {
         setTargetNumber(Math.floor(Math.random() * (999 - 100 + 1) + 100));
-    }
+    };
 
     const symbolClickCounter = () => {
         setSymbolClicks(state => state + 1);

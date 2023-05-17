@@ -44,16 +44,17 @@
 }
 
 .target-number {
-    font-size: 4rem ;
+    font-size: 4rem;
     font-family: 'Orbitron', sans-serif;
     padding: 1rem 0rem;
-    /* letter-spacing: 3px; */
     color: #62cbe7;
     font-weight: bold;
 }
+
+/* MEDIA QUERY FOR RESPONSIVE DESIGN */
 
 @media screen and (max-width: 900px) {
     #game-info {
         width: 70%;
     }
-  }
+}

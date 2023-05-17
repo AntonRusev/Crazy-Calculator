@@ -31,19 +31,20 @@ export const Calculator = () => {
             const temp = values[i];
             values[i] = values[j];
             values[j] = temp;
-        }
+        };
 
         setButtons(values);
     };
 
     return (
-            <div id={css.calculator}>
-                <div className={css['display-wrapper']}>
-                    <p className={css.display}>{currentInput !== '0' ? +currentInput : +result}</p>
-                </div>
-                <div className={css['btn-holder']}>
-                    {buttons.map(x => <Button key={x} value={x} />)}
-                </div>
+        <div id={css.calculator}>
+            <div className={css['display-wrapper']}>
+                <p className={css.display}>{currentInput !== '0' ? +currentInput : +result}</p>
             </div>
+            
+            <div className={css['btn-holder']}>
+                {buttons.map(x => <Button key={x} value={x} />)}
+            </div>
+        </div>
     );
 };

@@ -38,20 +38,22 @@
     color: #62cbe7;
 }
 
+/* MEDIA QUERY FOR RESPONSIVE DESIGN */
+
 @media screen and (min-width: 600px) {
     .modal-container {
         font-size: 2rem;
     }
-  }
+}
 
 @media screen and (min-width: 900px) {
     .modal-container {
         font-size: 3rem;
     }
-  }
+}
 
-  @media screen and (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
     .modal-container {
         font-size: 4rem;
     }
-  }
+}

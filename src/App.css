@@ -1,6 +1,5 @@
 #root {
   max-width: 1920px;
-  /* height: 150vh; */
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -38,6 +37,13 @@ h5 {
   text-shadow: 1px 1px 2px #104373;
   backdrop-filter: blur(1.3px);
 }
+
+.footer {
+  backdrop-filter: blur(1.3px);
+  margin-bottom: 0;
+}
+
+/* MEDIA QUERY FOR RESPONSIVE DESIGN */
 
 @media screen and (max-width: 1400px) {
   #main {

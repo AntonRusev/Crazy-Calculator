@@ -17,9 +17,13 @@ export const GameInfo = () => {
                     {/* <button onClick={onModalActivate}>MODAL</button> */}
                     <button onClick={gameStop}>STOP</button>
                 </div>
+
                 <h6>GOAL NUMBER:</h6>
+
                 <div className={css['target-number']}>{targetNumber === 0 ? '???' : targetNumber}</div>
+
                 <Timer />
+                
                 <div className={css['symbol-clicks']}>
                     <p>Operations:</p>
                     <p>{symbolClicks} / 3</p>

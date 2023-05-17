@@ -7,11 +7,7 @@
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
-#best-times p {
-    /* font-family: 'PT Mono', monospace; */
-}
-
-#best-times p:first-child{
+#best-times p:first-child {
     margin: 0.5rem 0.2rem;
 }
 
@@ -21,18 +17,17 @@
     border: #62cbe7 solid 2px;
 }
 
+/* MEDIA QUERY FOR RESPONSIVE DESIGN */
+
 @media screen and (max-width: 1400px) {
     #best-times {
         margin-top: 5rem;
         width: 80%;
     }
-  }
+}
 
-  @media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) {
     #best-times {
         width: 70%;
     }
-  }
-
-
-
+}

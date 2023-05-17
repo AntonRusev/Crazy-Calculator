@@ -16,4 +16,4 @@ export const Button = ({
             </p>
         </div>
     );
-}
+};

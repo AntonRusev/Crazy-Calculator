@@ -1,4 +1,4 @@
-## 1. Caclulator with a twist...
+## 1. Calculator with a twist...
 
 Crazy Calculator is just like any regular calculator, except that it acts... crazy. The buttons tend to shuffle whenever you press one of them, making it harder(and much more annoying!) to complete the desired calculation. 
 
@@ -13,3 +13,7 @@ Once you click the "START" button that is located to the left of the calculator 
 ## 4. High-scores
 
 On the right side of the calculator is located the high-scores of the current session list. The best times will be displayed there, from best to worst, in descending order. 
+
+## Miscellaneous
+
+The Crazy Calculator has responsive design.

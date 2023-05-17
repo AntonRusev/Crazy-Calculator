@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 
 import { GameContext } from "./GameContext";
 
@@ -28,24 +28,25 @@ export const CalcProvider = ({
             symbolType(value);
         } else {
             numInput(value);
-        }
+        };
     };
 
     const numInput = (value) => {
         if (value === '.' && currentInput.includes('.')) {
             return;
-        }
+        };
 
         if (currentInput[0] === '.') {
             setCurrentInput(state => state.concat('0' + state));
             setDisplayValue(state => state.slice(1));
-        }
+        };
 
         return setCurrentInput(state => state + value);
     };
 
     const equals = () => {
         let total = Number(result);
+        
         switch (symbol) {
             case '+':
                 total = Number(result) + Number(currentInput);
@@ -65,7 +66,8 @@ export const CalcProvider = ({
                 break;
             default:
                 break;
-        }
+        };
+
         setResult(String(Math.round((total + Number.EPSILON) * 100) / 100));
         setCurrentInput('0');
     };
@@ -78,8 +80,7 @@ export const CalcProvider = ({
         } else {
             equals();
             setSymbol(value);
-        }
-
+        };
     };
 
     const erase = (value) => {
@@ -89,16 +90,18 @@ export const CalcProvider = ({
             setSymbol('');
         } else {
             setCurrentInput('0');
-        }
+        };
     };
 
     const percent = () => {
         let percentResult = 0;
+
         if (result !== '0') {
             percentResult = result * (Number(currentInput) / 100);
         } else {
             percentResult = Number(currentInput) / 100;
-        }
+        };
+
         setCurrentInput(String(Math.round((percentResult + Number.EPSILON) * 100) / 100));
     };
 
