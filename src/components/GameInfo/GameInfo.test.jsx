@@ -1,5 +1,5 @@
 import { vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
 import { CalcProvider } from "../../contexts/CalcContext";
 import { GameProvider, GameContext } from "../../contexts/GameContext";
@@ -41,5 +41,35 @@ describe('Testing GameInfo Component', () => {
         );
 
         expect(screen.getByText(/---/i)).toBeInTheDocument();
+    });
+
+    test('Goal Number to be shown', () => {
+        const targetNumber = '444';
+        render(
+            <GameContext.Provider value={{ targetNumber }}>
+                <CalcProvider>
+                    <GameInfo />
+                </CalcProvider>
+            </GameContext.Provider>
+        );
+
+        expect(screen.getByText('444')).toBeInTheDocument();
+    });
+
+    test('gameStart method should be called when START is clicked', async () => {
+        const gameStart = vi.fn();
+
+        const gameInfo = render(
+            <GameContext.Provider value={{ gameStart }}>
+                <CalcProvider>
+                    <GameInfo />
+                </CalcProvider>
+            </GameContext.Provider>
+        );
+
+        const startBtn = await screen.findByText('START');
+        fireEvent.click(startBtn);
+
+        expect(gameStart).toHaveBeenCalledTimes(1)
     });
 });
