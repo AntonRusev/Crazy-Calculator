@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { GameContext } from "../../contexts/GameContext";
 
 import css from "./GameInfo.module.css";
@@ -23,7 +23,7 @@ export const GameInfo = () => {
                 <div className={css['target-number']}>{targetNumber === 0 ? '???' : targetNumber}</div>
 
                 <Timer />
-                
+
                 <div className={css['symbol-clicks']}>
                     <p>Operations:</p>
                     <p>{symbolClicks} / 3</p>

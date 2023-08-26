@@ -1,6 +1,6 @@
-import { Calculator } from './components/Calculator/Calculator';
+import Calculator from './components/Calculator/Calculator';
 import { GameInfo } from './components/GameInfo/GameInfo';
-import { ScoresTable } from './components/ScoresTable/ScoresTable';
+import ScoresTable from './components/ScoresTable/ScoresTable';
 
 import { GameProvider } from './contexts/GameContext';
 import { CalcProvider } from './contexts/CalcContext';

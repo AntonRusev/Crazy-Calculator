@@ -46,7 +46,7 @@ export const CalcProvider = ({
 
     const equals = () => {
         let total = Number(result);
-        
+
         switch (symbol) {
             case '+':
                 total = Number(result) + Number(currentInput);

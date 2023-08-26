@@ -1,10 +1,10 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 
 import { CalcContext } from '../../contexts/CalcContext';
 
 import css from './Button.module.css';
 
-export const Button = ({
+const Button = ({
     value
 }) => {
     const { onBtnClick } = useContext(CalcContext);
@@ -17,3 +17,5 @@ export const Button = ({
         </div>
     );
 };
+
+export default memo(Button);

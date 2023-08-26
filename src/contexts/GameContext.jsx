@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 export const GameContext = createContext();
 
@@ -41,44 +41,44 @@ export const GameProvider = ({
         };
     }, [bestTimes]);
 
-    const onModalClose = () => {
+    const onModalClose = useCallback(() => {
         setIsModalActive(false);
         setNewRecord(false);
-    };
+    }, [children]);
 
-    const onModalActivate = () => {
+    const onModalActivate = useCallback(() => {
         setIsModalActive(true);
-    };
+    }, [children]);
 
-    const gameStart = () => {
+    const gameStart = useCallback(() => {
         generateTargetNumber();
         setSymbolClicks(0);
         setTime(0);
         setActive(true);
-    };
+    }, [children]);
 
-    const gameStop = () => {
+    const gameStop = useCallback(() => {
         setTargetNumber('---');
         setSymbolClicks(0);
         setTime(0);
         setActive(false);
-    };
+    }, []);
 
-    const gameFinish = () => {
+    const gameFinish = useCallback(() => {
         setTargetNumber('---');
         setSymbolClicks(0);
         setActive(false);
         setBestTimes(state => [...state, `${("0" + Math.floor((time / 1000) % 60)).slice(-2)}:${("0" + ((time / 10) % 100)).slice(-2)}`]);
         setIsModalActive(true);
-    };
+    }, [children]);
 
-    const generateTargetNumber = () => {
+    const generateTargetNumber = useCallback(() => {
         setTargetNumber(Math.floor(Math.random() * (999 - 100 + 1) + 100));
-    };
+    }, [children]);
 
-    const symbolClickCounter = () => {
+    const symbolClickCounter = useCallback(() => {
         setSymbolClicks(state => state + 1);
-    };
+    }, [children]);
 
     const gameContextValue = {
         onModalClose,
