@@ -1,4 +1,3 @@
-import { vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 import { CalcProvider } from "../../contexts/CalcContext";
@@ -53,23 +52,40 @@ describe('Testing GameInfo Component', () => {
             </GameContext.Provider>
         );
 
-        expect(screen.getByText('444')).toBeInTheDocument();
+        expect(screen.getByText(/444/i)).toBeInTheDocument();
     });
 
-    test('gameStart method should be called when START is clicked', async () => {
-        const gameStart = vi.fn();
-
-        const gameInfo = render(
-            <GameContext.Provider value={{ gameStart }}>
+    test('Operations counter to change', () => {
+        const symbolClicks = '2';
+        render(
+            <GameContext.Provider value={{ symbolClicks }}>
                 <CalcProvider>
                     <GameInfo />
                 </CalcProvider>
             </GameContext.Provider>
         );
 
-        const startBtn = await screen.findByText('START');
-        fireEvent.click(startBtn);
+        expect(screen.getByText(/2/i)).toBeInTheDocument();
+    });
 
-        expect(gameStart).toHaveBeenCalledTimes(1)
+    test('method is called when START or STOP is clicked', async () => {
+        const gameStart = vi.fn();
+        const gameStop = vi.fn();
+
+        const gameInfo = render(
+            <GameContext.Provider value={{ gameStart, gameStop }}>
+                <CalcProvider>
+                    <GameInfo />
+                </CalcProvider>
+            </GameContext.Provider>
+        );
+
+        const startBtn = await screen.findByText(/start/i);
+        fireEvent.click(startBtn);
+        expect(gameStart).toHaveBeenCalledTimes(1);
+
+        const stopBtn = await screen.findByText(/stop/i);
+        fireEvent.click(stopBtn);
+        expect(gameStop).toHaveBeenCalledTimes(1);
     });
 });
