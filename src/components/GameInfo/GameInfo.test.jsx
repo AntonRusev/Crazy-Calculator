@@ -16,6 +16,7 @@ describe('Testing GameInfo Component', () => {
         );
         expect(screen.getByText(/start/i)).toBeInTheDocument();
         expect(screen.getByText(/stop/i)).toBeInTheDocument();
+        expect(screen.queryByText(/modal/i)).toBeNull();
     });
 
     test('Show heading', () => {
